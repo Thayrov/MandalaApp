@@ -1,4 +1,4 @@
-export const MANDALAS = [
+export const PRODUCTS = [
     {
         id: 1,
         categoryId: 1,
