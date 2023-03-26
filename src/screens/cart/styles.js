@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     },
     listContainer: {
         flex: 1,
-        backgroundColor: THEME.colors.ComplementaryColor1,
+        backgroundColor: THEME.colors.BGColor,
     },
     footer: {
         padding: ((height * width) / 1000) * 0.04,

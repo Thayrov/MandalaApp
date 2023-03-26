@@ -1,9 +1,10 @@
-import { FlatList, SafeAreaView } from 'react-native';
 import React, { useEffect } from 'react';
 import { filterProduct, selectProduct } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { FlatList } from 'react-native';
 import { ProductItem } from '../../components';
+import SafeAreaView from 'react-native-safe-area-view';
 import styles from './styles';
 
 const Products = ({ navigation }) => {

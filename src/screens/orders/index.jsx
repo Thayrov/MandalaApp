@@ -1,9 +1,9 @@
+import { EmptyData, OrderItem } from '../../components';
 import { FlatList, View } from 'react-native';
 import React, { useCallback } from 'react';
 import { deleteOrder, getOrders } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { OrderItem } from '../../components';
 import styles from './styles';
 import { useFocusEffect } from '@react-navigation/native';
 

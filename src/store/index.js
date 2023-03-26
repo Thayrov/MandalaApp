@@ -3,6 +3,7 @@ import {
     authReducer,
     cartReducer,
     categoryReducer,
+    favsReducer,
     ordersReducer,
     productReducer,
 } from './reducers';
@@ -15,5 +16,6 @@ const rootReducer = combineReducers({
     cart: cartReducer,
     orders: ordersReducer,
     auth: authReducer,
+    favorites: favsReducer,
 });
 export default createStore(rootReducer, applyMiddleware(thunk));

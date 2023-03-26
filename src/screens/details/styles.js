@@ -23,6 +23,12 @@ const styles = StyleSheet.create({
         width: '80%',
         borderRadius: 20,
     },
+    buttonsContainer: {
+        flexDirection: 'row',
+        width: '75%',
+        justifyContent: 'space-evenly',
+        paddingTop: ((height * width) / 1000) * 0.05,
+    },
 });
 
 export default styles;

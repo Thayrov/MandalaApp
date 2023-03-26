@@ -1,9 +1,9 @@
 import { Button, Image, Text, View } from 'react-native';
+import { addToCart, addToFavs } from '../../store/actions/';
 import { useDispatch, useSelector } from 'react-redux';
 
 import React from 'react';
 import { THEME } from '../../constants/theme';
-import { addToCart } from '../../store/actions/';
 import styles from './styles';
 
 const Details = ({ navigation }) => {
@@ -12,6 +12,9 @@ const Details = ({ navigation }) => {
     const onAddToCart = () => {
         dispatch(addToCart(product));
     };
+    const onAddToFavs = () => {
+        dispatch(addToFavs(product));
+    };
 
     return (
         <View style={styles.container}>
@@ -19,7 +22,18 @@ const Details = ({ navigation }) => {
             <Text style={styles.title}>{product?.description}</Text>
             <Image source={{ uri: product?.img }} style={styles.image} />
             <Text style={styles.title}>${product?.price}</Text>
-            <Button title="Add to cart" onPress={onAddToCart} color={THEME.colors.SecondaryColor} />
+            <View style={styles.buttonsContainer}>
+                <Button
+                    title="Add to cart"
+                    onPress={onAddToCart}
+                    color={THEME.colors.WarningColor}
+                />
+                <Button
+                    title="Add to favs"
+                    onPress={onAddToFavs}
+                    color={THEME.colors.SecondaryColor}
+                />
+            </View>
         </View>
     );
 };

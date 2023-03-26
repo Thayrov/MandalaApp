@@ -1,5 +1,6 @@
 import CartNavigator from './cart';
 import { Dimensions } from 'react-native';
+import FavoritesNavigator from './favorites';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import OrdersNavigator from './orders';
 import ShopNavigator from './shop';
@@ -51,6 +52,23 @@ const TabsNavigator = () => {
                     tabBarIcon: ({ focused }) => (
                         <MaterialCommunityIcons
                             name={focused ? 'basket' : 'basket-outline'}
+                            size={20}
+                            color={
+                                focused ? THEME.colors.SecondaryColor : THEME.colors.NeutralColor
+                            }
+                        />
+                    ),
+                }}
+            />
+            <BottomTab.Screen
+                name="FavoritesTab"
+                component={FavoritesNavigator}
+                options={{
+                    title: 'Favorites',
+
+                    tabBarIcon: ({ focused }) => (
+                        <MaterialCommunityIcons
+                            name={focused ? 'cards-heart' : 'cards-heart-outline'}
                             size={20}
                             color={
                                 focused ? THEME.colors.SecondaryColor : THEME.colors.NeutralColor

@@ -1,8 +1,8 @@
+import { CartItem, EmptyData } from '../../components';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { confirmOrder, removeFromCart } from '../../store/actions/cart.action';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { CartItem } from '../../components';
 import styles from './styles';
 
 const Cart = ({ navigation }) => {
@@ -17,14 +17,7 @@ const Cart = ({ navigation }) => {
     };
     const renderItem = ({ item }) => <CartItem item={item} onDelete={onDelete} />;
     const keyExtractor = (item) => item.id.toString();
-    const Header = () =>
-        cart.length <= 0 && (
-            <View style={styles.header}>
-                <Text style={styles.headerTitle}>
-                    You have not included any items to the cart yet
-                </Text>
-            </View>
-        );
+
     const Footer = () =>
         cart.length > 0 && (
             <View style={styles.footer}>
@@ -40,7 +33,11 @@ const Cart = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.listContainer}>
-                <Header />
+                <EmptyData
+                    source={cart}
+                    message="You have not included any items to the cart yet"
+                />
+
                 <FlatList
                     data={cart}
                     renderItem={renderItem}
