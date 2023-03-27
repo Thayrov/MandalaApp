@@ -16,6 +16,7 @@ const FavItem = ({ item, onDelete }) => {
             />
             <View style={styles.contentContainer2}>
                 <Image source={{ uri: item.img }} style={styles.image} />
+                <Image source={{ uri: item.img2 }} style={styles.image} />
             </View>
             <View style={styles.contentContainer}>
                 <Text style={styles.title}>{item.title}</Text>

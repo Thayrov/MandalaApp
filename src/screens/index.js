@@ -5,3 +5,4 @@ export { default as Cart } from './cart/index';
 export { default as Orders } from './orders/index';
 export { default as Auth } from './auth/index';
 export { default as Favorites } from './favorites/index';
+export { default as NewFavorite } from './new-favorite/index';
