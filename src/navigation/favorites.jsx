@@ -1,5 +1,6 @@
+import { Favorites, NewFavorite } from '../screens';
+
 import { Dimensions } from 'react-native';
-import { Favorites } from '../screens';
 import { THEME } from '../constants/theme';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -23,6 +24,11 @@ const FavoritesNavigator = () => {
                 },
             }}>
             <Stack.Screen name="Favorites" component={Favorites} />
+            <Stack.Screen
+                name="NewFavorite"
+                component={NewFavorite}
+                options={{ title: 'New Favorite' }}
+            />
         </Stack.Navigator>
     );
 };

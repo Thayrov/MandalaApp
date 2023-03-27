@@ -1,11 +1,38 @@
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
+
+import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import React from 'react';
 import { THEME } from '../../constants/theme';
 import styles from './styles';
 
 const FavItem = ({ item, onDelete }) => {
+    const [pickedUrl, setPickedUrl] = useState(null);
+
+    const verifyPermissions = async () => {
+        const { status } = await ImagePicker.requestCameraPermissionsAsync();
+        if (status !== 'granted') {
+            Alert.alert('Insufficient permits', 'Need permits to use camera.', [{ text: 'Ok' }]);
+            return false;
+        }
+        return true;
+    };
+
+    const onHandleTakeImage = async () => {
+        const isCameraPermission = await verifyPermissions();
+        if (!isCameraPermission) return;
+
+        const image = await ImagePicker.launchCameraAsync({
+            allowsEditing: true,
+            aspect: [16, 9],
+            quality: 0.7,
+        });
+
+        setPickedUrl(image.uri);
+    };
+
     return (
         <View style={styles.container}>
             <MaterialCommunityIcons
@@ -16,11 +43,26 @@ const FavItem = ({ item, onDelete }) => {
             />
             <View style={styles.contentContainer2}>
                 <Image source={{ uri: item.img }} style={styles.image} />
-                <Image source={{ uri: item.img2 }} style={styles.image} />
             </View>
             <View style={styles.contentContainer}>
                 <Text style={styles.title}>{item.title}</Text>
             </View>
+
+            <View>
+                {!pickedUrl ? (
+                    <TouchableOpacity onPress={onHandleTakeImage}>
+                        <MaterialCommunityIcons
+                            style={styles.icon}
+                            name="image-plus"
+                            size={20}
+                            color={THEME.colors.BGColor}
+                        />
+                    </TouchableOpacity>
+                ) : (
+                    <Image style={styles.image} source={{ uri: pickedUrl }} />
+                )}
+            </View>
+
             <TouchableOpacity onPress={() => onDelete(item.id)}>
                 <MaterialCommunityIcons
                     style={styles.icon}
